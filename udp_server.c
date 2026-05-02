@@ -114,7 +114,7 @@ PROCESS_THREAD(udp_server_process, ev, data)
   struct uip_ds6_addr *root_if;
 
   PROCESS_BEGIN();
-
+  ///////////////// esta parte é o que todos tem de ter configurada igual//////////////////////////////7
   uip_ip6addr(&ipaddr, 0xaaaa, 0, 0, 0, 0, 0, 0, 1);
   uip_ds6_addr_add(&ipaddr, 0, ADDR_MANUAL);
   root_if = uip_ds6_addr_lookup(&ipaddr);
@@ -130,6 +130,11 @@ PROCESS_THREAD(udp_server_process, ev, data)
                       UDP_PORT, udp_rx_callback);
 
   printf("SINK iniciado. Aguardar Tasks 0 - 9.\n");
+     ///////////////faltava isto aqui /////////////////////////   
+  while(1) {
+  PROCESS_WAIT_EVENT();
+}
 
+PROCESS_END();
   PROCESS_END();
 }
